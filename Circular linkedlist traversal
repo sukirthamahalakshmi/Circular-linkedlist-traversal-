@@ -1,0 +1,61 @@
+// Define the Node class
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// Define the CircularLinkedList class
+class CircularLinkedList {
+    private Node head;
+    private Node tail;
+
+    public CircularLinkedList() {
+        head = null;
+        tail = null;
+    }
+
+    // Method to add a node to the list
+    public void addNode(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+            newNode.next = head;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+            tail.next = head;
+        }
+    }
+
+    // Method to traverse the list
+    public void traverseList() {
+        if (head != null) {
+            Node current = head;
+            do {
+                System.out.print(current.data + " ");
+                current = current.next;
+            } while (current != head);
+        } else {
+            System.out.println("The list is empty.");
+        }
+    }
+
+    public static void main(String[] args) {
+        CircularLinkedList cll = new CircularLinkedList();
+
+        // Adding nodes to the list
+        cll.addNode(1);
+        cll.addNode(2);
+        cll.addNode(3);
+        cll.addNode(4);
+
+        // Traversing the list
+        cll.traverseList(); // Output: 1 2 3 4
+    }
+}
